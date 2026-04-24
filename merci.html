@@ -51,7 +51,6 @@ body {
   text-align: center;
 }
 
-/* CONFIRMATION ICON */
 .check-circle {
   width: 80px; height: 80px;
   border-radius: 50%;
@@ -68,7 +67,6 @@ body {
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* TITRE */
 .pre-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 18px;
@@ -120,7 +118,6 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* DATE REMINDER */
 .date-reminder {
   display: inline-flex;
   align-items: center;
@@ -138,7 +135,6 @@ body {
 .dr-val { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--cream); }
 .dr-sep { width: 1px; height: 36px; background: rgba(201,168,76,0.18); }
 
-/* COMPTE À REBOURS */
 .countdown-section {
   margin-bottom: 56px;
   opacity: 0;
@@ -189,7 +185,6 @@ body {
   color: var(--text-muted);
 }
 
-/* ACTIONS */
 .actions-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -214,7 +209,6 @@ body {
   transform: translateY(-3px);
 }
 
-/* Carte WhatsApp mise en avant */
 .action-card.featured {
   border-color: rgba(201,168,76,0.38);
   background: rgba(201,168,76,0.07);
@@ -237,9 +231,7 @@ body {
   padding: 4px 10px;
 }
 
-.action-card.featured:hover {
-  border-color: rgba(201,168,76,0.6);
-}
+.action-card.featured:hover { border-color: rgba(201,168,76,0.6); }
 
 .ac-icon { font-size: 28px; margin-bottom: 14px; display: block; }
 
@@ -259,7 +251,6 @@ body {
   margin-bottom: 18px;
 }
 
-/* Ligne d'alerte dans la carte WhatsApp */
 .ac-alert {
   display: flex;
   align-items: flex-start;
@@ -274,6 +265,12 @@ body {
   color: var(--gold-light);
   text-align: left;
   line-height: 1.6;
+}
+
+.ac-alert.blue {
+  background: rgba(100,160,255,0.08);
+  border-color: rgba(100,160,255,0.3);
+  color: #a8c8ff;
 }
 
 .ac-alert-icon { flex-shrink: 0; font-size: 14px; margin-top: 2px; }
@@ -295,6 +292,11 @@ body {
   color: var(--violet-deep);
 }
 
+.ac-btn.blue {
+  background: linear-gradient(130deg, #1a4fa0, #4a90e2, #1a6abf);
+  color: #fff;
+}
+
 .ac-btn.outline {
   background: transparent;
   border: 0.5px solid rgba(201,168,76,0.4);
@@ -303,7 +305,6 @@ body {
 
 .ac-btn:hover { opacity: .8; }
 
-/* CALENDAR LINKS */
 .calendar-section {
   margin-bottom: 56px;
   opacity: 0;
@@ -355,10 +356,48 @@ body {
 
 .cal-icon { font-size: 16px; }
 
-/* MESSAGE FINAL */
+/* ZOOM — carte seule et centrée */
+.zoom-section {
+  margin-bottom: 56px;
+  opacity: 0;
+  animation: fadeUp .7s ease 1.45s forwards;
+}
+
+.zoom-card {
+  max-width: 420px;
+  margin: 0 auto;
+  background: rgba(100,160,255,0.06);
+  border: 0.5px solid rgba(100,160,255,0.38);
+  border-radius: 18px;
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .3s, transform .3s;
+}
+
+.zoom-card:hover {
+  border-color: rgba(100,160,255,0.6);
+  transform: translateY(-3px);
+}
+
+.zoom-card::before {
+  content: '🎥 Le jour J';
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a8c8ff;
+  background: rgba(100,160,255,0.1);
+  border: 0.5px solid rgba(100,160,255,0.3);
+  border-radius: 20px;
+  padding: 4px 10px;
+}
+
 .final-message {
   opacity: 0;
-  animation: fadeUp .7s ease 1.5s forwards;
+  animation: fadeUp .7s ease 1.6s forwards;
 }
 
 .fm-text {
@@ -379,7 +418,6 @@ body {
   color: var(--gold);
 }
 
-/* FOOTER */
 footer {
   margin-top: 60px;
   font-size: 12px;
@@ -387,13 +425,14 @@ footer {
   letter-spacing: 0.05em;
 }
 
-/* RESPONSIVE */
 @media (max-width: 500px) {
   .date-reminder { flex-direction: column; gap: 14px; padding: 18px 24px; }
   .dr-sep { width: 40px; height: 0.5px; }
   .cd-block { min-width: 70px; padding: 16px 16px; }
   .cd-num { font-size: 38px; }
   .action-card.featured::before { display: none; }
+  .zoom-card { max-width: 100%; }
+  .zoom-card::before { display: none; }
 }
 </style>
 </head>
@@ -438,10 +477,10 @@ footer {
     </div>
   </div>
 
-  <!-- ACTIONS : GROUPE + CALENDRIER -->
+  <!-- ACTIONS : WhatsApp + Préparation -->
   <div class="actions-section">
 
-    <!-- CARTE WHATSAPP (mise en avant) -->
+    <!-- CARTE WHATSAPP -->
     <div class="action-card featured">
       <span class="ac-icon">💬</span>
       <h3 class="ac-title">Rejoignez le groupe privé</h3>
@@ -471,9 +510,25 @@ footer {
       <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Webinaire+Harmonie+%26+R%C3%A9sonance&dates=20260424T170000Z/20260424T190000Z&details=Webinaire+gratuit+avec+Aur%C3%A9lie+Perrier+%26+Laureline+Brochot&location=En+ligne" target="_blank" class="cal-btn">
         <span class="cal-icon">📅</span> Google Agenda
       </a>
-      <a href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20260424T190000%0ADTEND:20260424T210000%0ASUMMARY:Webinaire%19Harmonie%20%26%20R%C3%A9sonance%0ADESCRIPTION:Webinaire%20gratuit%20avec%20Aur%C3%A9lie%20Perrier%20%26%20Laureline%20Brochot%0AEND:VEVENT%0AEND:VCALENDAR" download="webinaire-harmonie-resonance.ics" class="cal-btn">
+      <a href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20260424T170000Z%0ADTEND:20260424T190000Z%0ASUMMARY:Webinaire%20Harmonie%20%26%20R%C3%A9sonance%0ADESCRIPTION:Webinaire%20gratuit%20avec%20Aur%C3%A9lie%20Perrier%20%26%20Laureline%20Brochot%0AEND:VEVENT%0AEND:VCALENDAR" download="webinaire-harmonie-resonance.ics" class="cal-btn">
         <span class="cal-icon">🍎</span> Apple / Outlook
       </a>
+    </div>
+  </div>
+
+  <!-- CARTE ZOOM — seule, centrée -->
+  <div class="zoom-section">
+    <div class="zoom-card">
+      <span class="ac-icon">🎥</span>
+      <h3 class="ac-title">Rejoindre le webinaire</h3>
+      <p class="ac-text">Le jour J, cliquez ici pour accéder directement à la salle Zoom. Pensez à tester votre connexion avant.</p>
+      <div class="ac-alert blue">
+        <span class="ac-alert-icon">📅</span>
+        <span>Accessible le <strong>24 avril à partir de 18h45</strong> — quelques minutes avant le début.</span>
+      </div>
+      <a href="https://us06web.zoom.us/j/89388096899?pwd=D5CFo4T5rCDamyZ8TEPKvpkaHpGU4b.1"
+         class="ac-btn blue"
+         target="_blank">Rejoindre sur Zoom</a>
     </div>
   </div>
 
@@ -489,9 +544,9 @@ footer {
 </div>
 
 <script>
-// COMPTE À REBOURS vers le 24 avril 2026 à 19h00
-const target = new Date('2026-04-24T19:00:00');
-      
+// COMPTE À REBOURS vers le 24 avril 2026 à 19h00 heure de Paris (= 17h00 UTC)
+const target = new Date('2026-04-24T17:00:00Z');
+
 function updateCountdown() {
   const now = new Date();
   const diff = target - now;
@@ -520,20 +575,3 @@ setInterval(updateCountdown, 1000);
 </script>
 </body>
 </html>
-
-<!-- CARTE ZOOM -->
-<div class="action-card featured" style="border-color: rgba(100,160,255,0.38); background: rgba(100,160,255,0.06);">
-  <span class="ac-icon">🎥</span>
-  <h3 class="ac-title">Rejoindre le webinaire</h3>
-  <p class="ac-text">Le jour J, cliquez ici pour accéder directement à la salle Zoom. Pensez à tester votre micro et votre caméra avant.</p>
-  <div class="ac-alert" style="border-color: rgba(100,160,255,0.3); background: rgba(100,160,255,0.08); color: #a8c8ff;">
-    <span class="ac-alert-icon">📅</span>
-    <span>Accessible le <strong>24 avril à partir de 18h45</strong> — quelques minutes avant le début.</span>
-  </div>
-  <a href="https://us06web.zoom.us/j/89388096899?pwd=D5CFo4T5rCDamyZ8TEPKvpkaHpGU4b.1" 
-     class="ac-btn" 
-     style="background: linear-gradient(130deg, #1a4fa0, #4a90e2, #1a6abf); color: #fff;"
-     target="_blank">
-    Rejoindre sur Zoom
-  </a>
-</div>
